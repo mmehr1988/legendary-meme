@@ -1,0 +1,63 @@
+:root {
+  --header-background: #dbe6fd;
+  --focused: #21209c;
+  --focused-other: #bbbbbb;
+  --focused-date: #eba83a;
+  --five-cards: #ffed99;
+}
+
+/* To Hide HTML Elements */
+.hidden {
+  display: none;
+}
+
+body {
+  font-family: 'Suez One', serif;
+}
+
+main {
+  padding: 60px 15px 0;
+}
+
+/* -------------------------------------------------- */
+/* BOOTSTRAP */
+/* -------------------------------------------------- */
+
+.card-header {
+  background-color: var(--header-background);
+}
+
+.card-body {
+  padding: 0.5rem;
+}
+
+.row {
+  margin-top: 0;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/* FOCUSED CITY */
+
+.focusCity {
+  color: var(--focused);
+}
+
+.focusDate {
+  color: var(--focused-date);
+}
+
+ul#recentSearch button {
+  color: var(--focused-other);
+  white-space: nowrap;
+}
+
+ul#recentSearch button:nth-child(1) {
+  color: var(--focused);
+}
+
+/* FIVE DAY FORECAST CARDS */
+
+.fiveCards {
+  background-color: var(--five-cards);
+}

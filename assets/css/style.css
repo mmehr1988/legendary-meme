@@ -4,6 +4,10 @@
   --focused-other: #bbbbbb;
   --focused-date: #eba83a;
   --five-cards: #ffed99;
+
+  --uv-fav: #9ede73;
+  --uv-mod: #f7ea00;
+  --uv-high: #ec4d4d;
 }
 
 /* To Hide HTML Elements */
@@ -60,4 +64,26 @@ ul#recentSearch button:nth-child(1) {
 
 .fiveCards {
   background-color: var(--five-cards);
+}
+
+/* -------------------------------------------------- */
+/* UV INDEX */
+/* -------------------------------------------------- */
+
+.uvFav {
+  background-color: var(--uv-fav);
+  padding: 0 0.5rem;
+  border-radius: 4px;
+}
+
+.uvMod {
+  background-color: var(--uv-mod);
+  padding: 0 0.5rem;
+  border-radius: 4px;
+}
+
+.uvHigh {
+  background-color: var(--uv-high);
+  padding: 0 0.5rem;
+  border-radius: 4px;
 }

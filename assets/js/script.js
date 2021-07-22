@@ -5,7 +5,7 @@
 // --------------------------------------------------------
 
 // MOMENT
-var dateToday = moment().format('MMMM Do YYYY');
+var dateToday = moment().format('MM/DD/YYYY');
 
 // CHECKBOX: FAHRENHEIT VS. CELSIUS
 var tempMetric = document.getElementById('flexSwitchCheckDefault');
@@ -107,6 +107,16 @@ function getForecast(lon, lat) {
   const metricDisplay = tempMetric.checked ? 'C' : 'F';
   const windSpeed = tempMetric.checked ? 'm/s' : 'mph';
 
+  function uvColor(uv) {
+    if (uv <= 3) {
+      return 'uvFav';
+    } else if (uv <= 5) {
+      return 'uvMod';
+    } else {
+      return 'uvHigh';
+    }
+  }
+
   var oneCallApi = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${metric}&exclude=minutely,hourly,alerts&appid=${apiKey}`;
 
   fetch(oneCallApi)
@@ -117,22 +127,24 @@ function getForecast(lon, lat) {
     })
     .then(function (data) {
       if (recentSearchUL.children.length > 0) {
-        focusCity.innerHTML = `<span class="focusCity">${cityArray[cityArray.length - 1]}: <span class="focusDate">${dateToday}</span></span>`;
-        forecastLiEl[0].innerHTML = `Current Temperature: ${Math.round(data.current.temp)} &#176${metricDisplay}`;
+        focusCity.innerHTML = `<span class="focusCity">${cityArray[cityArray.length - 1]}: <span class="focusDate">${dateToday}</span><img src="http://openweathermap.org/img/wn/${data.current.weather[0].icon}.png" alt="${data.current.weather[0].main}"></span>`;
+        forecastLiEl[0].innerHTML = `Current Temp: ${Math.round(data.current.temp)} &#176${metricDisplay}`;
         forecastLiEl[1].innerHTML = `Feels Like: ${Math.round(data.current.feels_like)} &#176${metricDisplay}`;
         forecastLiEl[2].innerHTML = `Condition: ${data.current.weather[0].main}`;
         forecastLiEl[3].innerHTML = `Humidity: ${data.current.humidity} &#37`;
         forecastLiEl[4].innerHTML = `High: ${Math.round(data.daily[0].temp.max)} &#176${metricDisplay}`;
         forecastLiEl[5].innerHTML = `Low: ${Math.round(data.daily[0].temp.min)} &#176${metricDisplay}`;
-        forecastLiEl[6].innerHTML = `Wind Speed: ${data.current.wind_speed} ${windSpeed}`;
-        forecastLiEl[7].innerHTML = `UV Index: ${data.current.uvi}`;
+        forecastLiEl[6].innerHTML = `Wind: ${data.current.wind_speed} ${windSpeed}`;
+        forecastLiEl[7].innerHTML = `UV Index: <span class="${uvColor(data.current.uvi)}">${data.current.uvi}</span>`;
+
+        // Five Day Forecast - Loop
         for (let i = 0; i < fiveDayDate.length; i++) {
           fiveDaySection[i].children[0].innerHTML = moment()
             .add(i + 1, 'days')
             .format('M/D/YYYY');
-          fiveDaySection[i].children[1].innerHTML = `Day: ${Math.round(data.daily[i].temp.day)} &#176${metricDisplay}`;
-          fiveDaySection[i].children[2].innerHTML = `High: ${Math.round(data.daily[i].temp.max)} &#176${metricDisplay}`;
-          fiveDaySection[i].children[3].innerHTML = `Low: ${Math.round(data.daily[i].temp.min)} &#176${metricDisplay}`;
+          fiveDaySection[i].children[1].innerHTML = `<img src="http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}.png" alt="${data.daily[i].weather[0].main}">`;
+          fiveDaySection[i].children[2].innerHTML = `Temp: ${Math.round(data.daily[i].temp.day)} &#176${metricDisplay}`;
+          fiveDaySection[i].children[3].innerHTML = `Wind: ${Math.round(data.daily[i].wind_speed)} ${windSpeed}`;
           fiveDaySection[i].children[4].innerHTML = `Humidity: ${data.daily[i].humidity} &#37`;
         }
       }

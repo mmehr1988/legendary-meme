@@ -48,8 +48,6 @@ The requirements for completing the App assignment were the following.
 
    a. When user clicks on any of the saved city, they are presented with the data discussed above.
 
-## Process of Writing Code
-
 # Image Of Final Assignment
 
 ![alt text](./assets/img/legendary-meme.png)

@@ -4,6 +4,8 @@ Assignment: Weather Dashboard
 
 Developer: Mehdi Mehrabani
 
+App Link: [Weather Dashboard](https://mmehr1988.github.io/legendary-meme/)
+
 For this week, we were tasked with building a Weather Dashboard that allows a user to look up the current weather for any city. The main purpose of this assignment was to further enhance our knowledge of Server-Side APIs and using localStorage to store any persistent data.
 
 In the week prior, we learned how to use the Fetch API method to access API data.

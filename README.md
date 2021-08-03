@@ -50,6 +50,6 @@ The requirements for completing the App assignment were the following.
 
    a. When user clicks on any of the saved city, they are presented with the data discussed above.
 
-# Image Of Final Assignment
+# GIF Of Final Assignment
 
-![alt text](./assets/img/legendary-meme.png)
+![alt text](./assets/gif/Weather-Dashboard.gif)
